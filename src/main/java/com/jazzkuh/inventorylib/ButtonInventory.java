@@ -1,11 +1,11 @@
 package com.jazzkuh.inventorylib;
 
-import com.jazzkuh.inventorylib.item.ItemBuilder;
 import net.kyori.adventure.text.Component;
 import net.minestom.server.entity.Player;
 import net.minestom.server.inventory.InventoryType;
 import com.jazzkuh.inventorylib.abstraction.BaseInventory;
 import com.jazzkuh.inventorylib.button.Button;
+import net.minestom.server.item.ItemStack;
 
 public abstract class ButtonInventory extends BaseInventory {
     public ButtonInventory(Component name, InventoryType inventoryType) {
@@ -16,13 +16,13 @@ public abstract class ButtonInventory extends BaseInventory {
     @Override
     public void createInventory(Player player) {
         for (Button button : this.buttons) {
-            ItemBuilder itemBuilder = button.getIdentifiedItem();
+            ItemStack itemStack = button.getIdentifiedItem();
             if (button.getSlot() != null) {
-                this.inventory.setItemStack(button.getSlot(), itemBuilder.toItemStack());
+                this.inventory.setItemStack(button.getSlot(), itemStack);
                 continue;
             }
 
-            this.inventory.addItemStack(itemBuilder.toItemStack());
+            this.inventory.addItemStack(itemStack);
         }
 
         player.openInventory(inventory);

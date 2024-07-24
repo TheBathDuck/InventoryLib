@@ -6,11 +6,13 @@ import net.minestom.server.entity.Player;
 import net.minestom.server.event.EventListener;
 import net.minestom.server.event.inventory.InventoryPreClickEvent;
 import net.minestom.server.inventory.click.ClickType;
+import net.minestom.server.item.ItemComponent;
 import net.minestom.server.item.ItemStack;
-import com.jazzkuh.inventorylib.item.ItemBuilder;
 import com.jazzkuh.inventorylib.abstraction.BaseInventory;
 import com.jazzkuh.inventorylib.button.Button;
+import net.minestom.server.tag.Tag;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 public class ButtonInventoryClickListener implements EventListener<InventoryPreClickEvent> {
     @Override
@@ -31,8 +33,8 @@ public class ButtonInventoryClickListener implements EventListener<InventoryPreC
 
         event.setCancelled(true);
 
-        if (ItemBuilder.hasData(itemStack, "button_identifier")) {
-            String buttonId = ItemBuilder.getData(itemStack, "button_identifier");
+        if (hasCustomData(itemStack, "button_identifier")) {
+            String buttonId = getCustomData(itemStack, "button_identifier");
             Button button = baseInventory.getButton(buttonId);
             if (button != null) {
                 if (button.isSound()) {
@@ -45,5 +47,17 @@ public class ButtonInventoryClickListener implements EventListener<InventoryPreC
             }
         } else baseInventory.onClick(event);
         return Result.SUCCESS;
+    }
+
+    private boolean hasCustomData(ItemStack itemStack, String key) {
+        if (!itemStack.has(ItemComponent.CUSTOM_DATA)) return false;
+        return itemStack.get(ItemComponent.CUSTOM_DATA).hasTag(Tag.String(key));
+    }
+
+    @Nullable
+    private String getCustomData(ItemStack itemStack, String key) {
+        if (!itemStack.has(ItemComponent.CUSTOM_DATA)) return null;
+        if (!hasCustomData(itemStack, key)) return null;
+        return itemStack.get(ItemComponent.CUSTOM_DATA).getTag(Tag.String(key));
     }
 }
