@@ -1,4 +1,4 @@
-package com.jazzkuh.inventorylib.button;
+package com.jazzkuh.inventorylib.objects.icon;
 
 import lombok.Data;
 import net.kyori.adventure.nbt.CompoundBinaryTag;
@@ -11,78 +11,86 @@ import java.util.UUID;
 import java.util.function.Consumer;
 
 @Data
-public final class Button {
-    private Integer slot;
+public final class Icon {
+
+    private UUID uniqueId;
     private ItemStack item;
     private Consumer<InventoryPreClickEvent> clickEvent;
     private boolean sound;
 
-    private final String identifier;
-
-    public Button(int slot, ItemStack item) {
+    private Integer slot;
+    
+    public Icon(int slot, ItemStack item) {
         this.slot = slot;
         this.item = item;
         this.sound = true;
         this.clickEvent = null;
-        this.identifier = UUID.randomUUID().toString();
+        this.uniqueId = UUID.randomUUID();
     }
 
-    public Button(int slot, ItemStack item, Consumer<InventoryPreClickEvent> clickEvent) {
+    public Icon(int slot, ItemStack item, Consumer<InventoryPreClickEvent> clickEvent) {
         this.slot = slot;
         this.item = item;
         this.sound = true;
         this.clickEvent = clickEvent;
-        this.identifier = UUID.randomUUID().toString();
+        this.uniqueId = UUID.randomUUID();
     }
 
-    public Button(int slot, ItemStack item, boolean hasSound) {
+    public Icon(int slot, ItemStack item, boolean hasSound) {
         this.slot = slot;
         this.item = item;
         this.sound = hasSound;
         this.clickEvent = null;
-        this.identifier = UUID.randomUUID().toString();
+        this.uniqueId = UUID.randomUUID();
     }
 
-    public Button(int slot, ItemStack item, boolean hasSound, Consumer<InventoryPreClickEvent> clickEvent) {
+    public Icon(int slot, ItemStack item, boolean hasSound, Consumer<InventoryPreClickEvent> clickEvent) {
         this.slot = slot;
         this.item = item;
         this.sound = hasSound;
         this.clickEvent = clickEvent;
-        this.identifier = UUID.randomUUID().toString();
+        this.uniqueId = UUID.randomUUID();
     }
 
-    public Button(ItemStack item) {
+    public Icon(ItemStack item) {
         this.slot = null;
         this.item = item;
         this.sound = true;
         this.clickEvent = null;
-        this.identifier = UUID.randomUUID().toString();
+        this.uniqueId = UUID.randomUUID();
     }
 
-    public Button(ItemStack item, Consumer<InventoryPreClickEvent> clickEvent) {
+    public Icon(ItemStack item, Consumer<InventoryPreClickEvent> clickEvent) {
         this.slot = null;
         this.item = item;
         this.sound = true;
         this.clickEvent = clickEvent;
-        this.identifier = UUID.randomUUID().toString();
+        this.uniqueId = UUID.randomUUID();
     }
 
-    public Button(ItemStack item, boolean hasSound) {
+    public Icon(ItemStack item, boolean hasSound) {
         this.slot = null;
         this.item = item;
         this.sound = hasSound;
         this.clickEvent = null;
-        this.identifier = UUID.randomUUID().toString();
+        this.uniqueId = UUID.randomUUID();
     }
 
-    public Button(ItemStack item, boolean hasSound, Consumer<InventoryPreClickEvent> clickEvent) {
+    public Icon(ItemStack item, boolean hasSound, Consumer<InventoryPreClickEvent> clickEvent) {
         this.item = item;
         this.sound = hasSound;
         this.clickEvent = clickEvent;
-        this.identifier = UUID.randomUUID().toString();
+        this.uniqueId = UUID.randomUUID();
     }
 
-    public ItemStack getIdentifiedItem() {
-        return this.getItem().with(ItemComponent.CUSTOM_DATA, new CustomData(CompoundBinaryTag.builder().putString("button_identifier", this.getIdentifier().toString()).build()));
+    public ItemStack getItem() {
+        return this.getItem(true);
     }
+
+    public ItemStack getItem(boolean withIdentifier) {
+        if (!withIdentifier) return this.item;
+
+        return this.item.with(ItemComponent.CUSTOM_DATA, new CustomData(CompoundBinaryTag.builder().putString("icon_identifier", this.uniqueId.toString()).build()));
+    }
+
 }
