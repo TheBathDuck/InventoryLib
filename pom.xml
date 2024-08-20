@@ -38,6 +38,7 @@
     </dependencies>
 
     <modules>
+        <module>common</module>
         <module>minestom</module>
         <module>spigot</module>
     </modules>
