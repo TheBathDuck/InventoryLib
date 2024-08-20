@@ -107,25 +107,17 @@ public class PersistentData {
     @Nullable
     @SuppressWarnings("unchecked")
     private static <T> PersistentDataType<?, T> getDataType(T value) {
-        if (value instanceof String) {
-            return (PersistentDataType<?, T>) PersistentDataType.STRING;
-        } else if (value instanceof Integer) {
-            return (PersistentDataType<?, T>) PersistentDataType.INTEGER;
-        } else if (value instanceof Boolean) {
-            return (PersistentDataType<?, T>) PersistentDataType.BOOLEAN;
-        } else if (value instanceof Double) {
-            return (PersistentDataType<?, T>) PersistentDataType.DOUBLE;
-        } else if (value instanceof Float) {
-            return (PersistentDataType<?, T>) PersistentDataType.FLOAT;
-        } else if (value instanceof Long) {
-            return (PersistentDataType<?, T>) PersistentDataType.LONG;
-        } else if (value instanceof Byte) {
-            return (PersistentDataType<?, T>) PersistentDataType.BYTE;
-        } else if (value instanceof Short) {
-            return (PersistentDataType<?, T>) PersistentDataType.SHORT;
-        } else {
-            return null;
-        }
+        return switch (value) {
+            case String ignored -> (PersistentDataType<?, T>) PersistentDataType.STRING;
+            case Integer ignored -> (PersistentDataType<?, T>) PersistentDataType.INTEGER;
+            case Boolean ignored -> (PersistentDataType<?, T>) PersistentDataType.BOOLEAN;
+            case Double ignored -> (PersistentDataType<?, T>) PersistentDataType.DOUBLE;
+            case Float ignored -> (PersistentDataType<?, T>) PersistentDataType.FLOAT;
+            case Long ignored -> (PersistentDataType<?, T>) PersistentDataType.LONG;
+            case Byte ignored -> (PersistentDataType<?, T>) PersistentDataType.BYTE;
+            case Short ignored -> (PersistentDataType<?, T>) PersistentDataType.SHORT;
+            case null, default -> null;
+        };
     }
 
     @Nullable
