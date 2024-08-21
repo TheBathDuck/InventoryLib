@@ -44,7 +44,7 @@ public abstract class Menu extends Inventory {
         return icons.stream().filter(icon -> icon.getUniqueId().equals(uniqueId)).findFirst().orElse(null);
     }
 
-    public void update() {
+    public void updateMenu() {
         this.inventory.clear();
 
         for (Icon icon : this.icons) {
@@ -61,7 +61,7 @@ public abstract class Menu extends Inventory {
     public void open(Player player) {
         this.player = player;
 
-        this.update();
+        this.updateMenu();
         player.openInventory(this.inventory);
     }
 

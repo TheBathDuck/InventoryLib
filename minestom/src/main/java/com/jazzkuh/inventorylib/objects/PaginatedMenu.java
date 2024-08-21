@@ -29,7 +29,7 @@ public abstract class PaginatedMenu extends Menu {
     }
 
     @Override
-    public void update() {
+    public void updateMenu() {
         this.inventory.clear();
         this.registeredSlots.sort(Integer::compareTo);
         this.setPageItems();
@@ -77,7 +77,7 @@ public abstract class PaginatedMenu extends Menu {
 
     private void openPage(int page) {
         this.page = page;
-        this.update();
+        this.updateMenu();
     }
 
     protected void setPageItems() {
