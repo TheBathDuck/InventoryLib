@@ -30,11 +30,11 @@ public class ButtonInventoryClickListener implements EventListener<InventoryPreC
         if (!(event.getInventory() instanceof Menu menu)) return Result.SUCCESS;
 
         if (event.getClickType() != ClickType.LEFT_CLICK && event.getClickType() != ClickType.RIGHT_CLICK) {
-            event.setCancelled(true);
+            if (menu.isCancelClick()) event.setCancelled(true);
             return Result.SUCCESS;
         }
 
-        event.setCancelled(true);
+        if (menu.isCancelClick()) event.setCancelled(true);
 
         if (hasCustomData(itemStack, "icon_identifier")) {
             String buttonId = getCustomData(itemStack, "icon_identifier");

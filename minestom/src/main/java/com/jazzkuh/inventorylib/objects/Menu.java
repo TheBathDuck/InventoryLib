@@ -23,6 +23,7 @@ public abstract class Menu extends Inventory {
     protected Inventory inventory;
     protected Component inventoryName;
     protected InventoryType inventoryType;
+    protected boolean cancelClick;
 
     protected Player player;
 
@@ -35,6 +36,16 @@ public abstract class Menu extends Inventory {
         this.inventory = this;
         this.inventoryName = title;
         this.inventoryType = type;
+        this.cancelClick = true;
+    }
+
+    public Menu(Component title, InventoryType type, boolean cancelClick) {
+        super(type, title);
+
+        this.inventory = this;
+        this.inventoryName = title;
+        this.inventoryType = type;
+        this.cancelClick = cancelClick;
     }
 
     public Icon getIcon(UUID uniqueId) {

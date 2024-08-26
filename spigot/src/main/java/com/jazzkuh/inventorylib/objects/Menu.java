@@ -24,6 +24,7 @@ public abstract class Menu implements InventoryHolder {
     protected InventoryType inventoryType;
     protected int inventorySize;
     protected boolean dynamic;
+    protected boolean cancelClick;
 
     protected Player player;
 
@@ -46,6 +47,12 @@ public abstract class Menu implements InventoryHolder {
         this.inventorySize = size * 9;
         this.inventoryType = type;
         this.dynamic = false;
+    }
+
+    public Menu(Component title, InventoryType type, boolean cancelClick) {
+        this.inventoryName = title;
+        this.inventoryType = type;
+        this.cancelClick = cancelClick;
     }
 
     public Icon getIcon(UUID uniqueId) {

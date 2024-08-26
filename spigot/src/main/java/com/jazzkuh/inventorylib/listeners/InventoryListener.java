@@ -25,11 +25,11 @@ public final class InventoryListener implements Listener {
         if (!(event.getInventory().getHolder() instanceof Menu menu)) return;
 
         if (event.getClick() == ClickType.NUMBER_KEY) {
-            event.setCancelled(true);
+            if (menu.isCancelClick()) event.setCancelled(true);
             return;
         }
 
-        event.setCancelled(true);
+        if (menu.isCancelClick()) event.setCancelled(true);
 
         if (!PersistentData.contains(stack, "icon_identifier")) {
             menu.onClick(event);
