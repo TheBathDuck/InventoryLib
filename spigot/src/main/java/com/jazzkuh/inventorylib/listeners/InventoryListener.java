@@ -42,7 +42,7 @@ public final class InventoryListener implements Listener {
         if (icon == null || icon.getClickEvent() == null) return;
         if (icon.isSound()) {
             Player player = (Player) event.getWhoClicked();
-            player.playSound(Sound.sound(Key.key("ui_button_click"), Sound.Source.PLAYER, 1, 1));
+            player.playSound(Sound.sound(Key.key("minecraft:ui_button_click"), Sound.Source.PLAYER, 1, 1));
         }
 
         icon.getClickEvent().accept(event);

@@ -43,7 +43,7 @@ public class ButtonInventoryClickListener implements EventListener<InventoryPreC
             if (icon != null) {
                 if (icon.isSound()) {
                     Player player = event.getPlayer();
-                    player.playSound(Sound.sound(Key.key("ui_button_click"), Sound.Source.PLAYER, 1, 1));
+                    player.playSound(Sound.sound(Key.key("minecraft:ui_button_click"), Sound.Source.PLAYER, 1, 1));
                 }
 
                 if (icon.getClickEvent() == null) return Result.SUCCESS;
