@@ -49,6 +49,14 @@ public abstract class Menu implements InventoryHolder {
         this.dynamic = false;
     }
 
+    public Menu(Component title, int size, InventoryType type, boolean cancelClick) {
+        this.inventoryName = title;
+        this.inventorySize = size * 9;
+        this.inventoryType = type;
+        this.dynamic = false;
+        this.cancelClick = cancelClick;
+    }
+
     public Menu(Component title, InventoryType type, boolean cancelClick) {
         this.inventoryName = title;
         this.inventoryType = type;

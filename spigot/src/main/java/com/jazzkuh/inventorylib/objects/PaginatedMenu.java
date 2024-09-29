@@ -28,8 +28,8 @@ public abstract class PaginatedMenu extends Menu {
         super(title);
     }
 
-    public PaginatedMenu(Component title, int size, InventoryType type) {
-        super(title, size, type);
+    public PaginatedMenu(Component title, int size, InventoryType type, boolean cancelClick) {
+        super(title, size, type, cancelClick);
     }
 
     @Override
@@ -91,6 +91,7 @@ public abstract class PaginatedMenu extends Menu {
         previousPageItem.setClickEvent(event -> {
             if (this.page == 1) {
                 if (InventoryLoader.getFormattingProvider() == null) return;
+                event.setCancelled(true);
                 this.player.sendMessage(InventoryLoader.getFormattingProvider().formatError("There is no previous page."));
                 return;
             }
@@ -101,6 +102,7 @@ public abstract class PaginatedMenu extends Menu {
         nextPageItem.setClickEvent(event -> {
             if (this.page >= this.getMaxPages()) {
                 if (InventoryLoader.getFormattingProvider() == null) return;
+                event.setCancelled(true);
                 this.player.sendMessage(InventoryLoader.getFormattingProvider().formatError("There is no next page."));
                 return;
             }
