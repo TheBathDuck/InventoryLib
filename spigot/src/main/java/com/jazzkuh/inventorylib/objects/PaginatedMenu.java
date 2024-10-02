@@ -91,23 +91,23 @@ public abstract class PaginatedMenu extends Menu {
         previousPageItem.setClickEvent(event -> {
             if (this.page == 1) {
                 if (InventoryLoader.getFormattingProvider() == null) return;
-                event.setCancelled(true);
                 this.player.sendMessage(InventoryLoader.getFormattingProvider().formatError("There is no previous page."));
                 return;
             }
 
             this.openPage(this.page - 1);
+            event.setCancelled(true);
         });
 
         nextPageItem.setClickEvent(event -> {
             if (this.page >= this.getMaxPages()) {
                 if (InventoryLoader.getFormattingProvider() == null) return;
-                event.setCancelled(true);
                 this.player.sendMessage(InventoryLoader.getFormattingProvider().formatError("There is no next page."));
                 return;
             }
 
             this.openPage(this.page + 1);
+            event.setCancelled(true);
         });
 
         if (nextPageItem.getSlot() == null || previousPageItem.getSlot() == null)
