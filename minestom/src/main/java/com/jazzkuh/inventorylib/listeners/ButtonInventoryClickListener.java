@@ -10,6 +10,7 @@ import net.minestom.server.event.inventory.InventoryPreClickEvent;
 import net.minestom.server.inventory.click.ClickType;
 import net.minestom.server.item.ItemComponent;
 import net.minestom.server.item.ItemStack;
+import net.minestom.server.sound.SoundEvent;
 import net.minestom.server.tag.Tag;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -43,7 +44,7 @@ public class ButtonInventoryClickListener implements EventListener<InventoryPreC
             if (icon != null) {
                 if (icon.isSound()) {
                     Player player = event.getPlayer();
-                    player.playSound(Sound.sound(Key.key("minecraft:ui_button_click"), Sound.Source.PLAYER, 1, 1));
+                    player.playSound(Sound.sound(SoundEvent.UI_BUTTON_CLICK, Sound.Source.PLAYER, 1F, 1F));
                 }
 
                 if (icon.getClickEvent() == null) return Result.SUCCESS;
