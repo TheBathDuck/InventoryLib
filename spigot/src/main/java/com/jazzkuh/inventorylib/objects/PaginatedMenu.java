@@ -28,8 +28,8 @@ public abstract class PaginatedMenu extends Menu {
         super(title);
     }
 
-    public PaginatedMenu(Component title, int size, InventoryType type) {
-        super(title, size, type);
+    public PaginatedMenu(Component title, int size, InventoryType type, boolean cancelClick) {
+        super(title, size, type, cancelClick);
     }
 
     @Override
@@ -96,6 +96,7 @@ public abstract class PaginatedMenu extends Menu {
             }
 
             this.openPage(this.page - 1);
+            event.setCancelled(true);
         });
 
         nextPageItem.setClickEvent(event -> {
@@ -106,6 +107,7 @@ public abstract class PaginatedMenu extends Menu {
             }
 
             this.openPage(this.page + 1);
+            event.setCancelled(true);
         });
 
         if (nextPageItem.getSlot() == null || previousPageItem.getSlot() == null)
