@@ -31,7 +31,6 @@ public abstract class PaginatedMenu extends Menu {
     @Override
     public void updateMenu() {
         this.inventory.clear();
-        this.registeredSlots.sort(Integer::compareTo);
         this.setPageItems();
 
         for (Icon icon : this.specialIcons) {
