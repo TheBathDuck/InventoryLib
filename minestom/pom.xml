@@ -17,15 +17,8 @@
         <maven.compiler.target>21</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-        <minestom.version>8209a1d1e9</minestom.version>
+        <minestom.version>2025.07.04-1.21.5</minestom.version>
     </properties>
-
-    <repositories>
-        <repository>
-            <id>jitpack.io</id>
-            <url>https://jitpack.io</url>
-        </repository>
-    </repositories>
 
     <dependencies>
         <dependency>
@@ -37,7 +30,7 @@
 
         <dependency>
             <groupId>net.minestom</groupId>
-            <artifactId>minestom-snapshots</artifactId>
+            <artifactId>minestom</artifactId>
             <version>${minestom.version}</version>
             <scope>provided</scope>
         </dependency>
